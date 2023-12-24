@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/layout :: head(~{this::title},~{this::meta})}">
+    <title>Giriş yap</title>
+    <meta name="description" content="giriş yap" >
+    <meta name="keywords" content="giris" >
+</head>
+<body th:insert="~{layout/layout :: body(~{::#main})}">
+<section id="main">
+    <div class="flex justify-center items-center">
+        <form th:action="@{/login}" th:object="${form}" method="POST">
+            <div>
+                <input type="text" class="border bg-slate-100 rounded px-3 py-2" th:field="*{username}" placeholder="Kullanıcı adı">
+                <div th:if="${#fields.hasErrors('username')}" class="mt-2">
+                    <p th:errors="*{username}" class="text-sm text-red-600"></p>
+                </div>
+            </div>
+            <div class="mt-2">
+                <input type="password" class="border bg-slate-100 rounded px-3 py-2" th:field="*{password}" placeholder="Şifre">
+                <div th:if="${#fields.hasErrors('password')}" class="mt-2">
+                    <p th:errors="*{password}" class="text-sm text-red-600"></p>
+                </div>
+            </div>
+            <div th:if="param.error" class="mt-2">
+                <p class="text-sm text-red-600">Kullanıcı adı veya şifre hatalı.</p>
+            </div>
+            <div class="mt-2">
+                <button type="submit" class=" w-full bg-emerald-500 text-white py-2 px-4 rounded">Giriş yap</button>
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

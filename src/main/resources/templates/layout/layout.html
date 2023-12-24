@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title,meta)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title th:replace="${title}"></title>
+    <meta th:replace="${meta}">
+</head>
+<body th:fragment="body(value)">
+
+        <div th:replace="~{fragments/header :: header}"></div>
+
+        <main class="flex justify-center">
+            <div class="container mt-10" th:insert="${value}"></div>
+        </main>
+
+
+    <script th:src="@{https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js}"></script>
+</body>
+</html>

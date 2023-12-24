@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/layout :: head(~{this::title},~{this::meta})}">
+    <title>Anasayfa</title>
+    <meta name="description" content="merhaba index" >
+    <meta name="keywords" content="index" >
+</head>
+<body th:insert="~{layout/layout :: body(~{::#main})}">
+    <section id="main" class="px-64">
+        <div class="p-10 bg-slate-100 border rounded" sec:authorize="${isAuthenticated()}">
+            <h2 class="text-xl">Merhaba! <span class="font-semibold" th:text="${#authentication.principal.username}"></span></h2>
+            <div class="mt-2 text-sm">
+                <p>Id: <span th:text="${#authentication.principal.id}"></span></p>
+                <p>Email: <span th:text="${#authentication.principal.email}"></span></p>
+                <p>Şifre: <span th:text="${#authentication.principal.password}"></span></p>
+            </div>
+        </div>
+        <div class="mt-14 border-t flex justify-center items-center pt-4">
+            <iconify-icon th:width="30" icon="logos:spring"></iconify-icon>
+        </div>
+    </section>
+</body>
+</html>
